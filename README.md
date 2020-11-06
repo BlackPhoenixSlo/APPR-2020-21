@@ -1,5 +1,7 @@
 # Analiza podatkov s programom R, 2020/21
 
+Jaka Testira push
+
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2020/21
 
 * [![Shiny](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/BlackPhoenixSlo/APPR-2020-21/master?urlpath=shiny/APPR-2020-21/projekt.Rmd) Shiny
