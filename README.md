@@ -1,4 +1,4 @@
-# Analiza podatkov s programom R, 2020/21
+# Analiza podatkov Povprečni pridelek (t/ha) pomembnejših kmetijskih kultur, po statističnih regijah, Slovenija, letno s programom R, 2020
 
 Jaka Testira push
 
@@ -9,9 +9,21 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2020/21
 
 ## Tematika
 
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal.
-Tukaj boste napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+Izbral sem si povprečno pridelavo žitaric po regijah. 
 
+Podatke sem dobil na Republičnem inštitutu ljubljana.
+
+Cilj je ugotoviti, kje v sloveniji se proizvedenajveč živilj
+
+
+https://pxweb.stat.si/SiStatData/pxweb/sl/Data/-/1502410S.px
+
+Podatki so navoljo v csv datoteki, xlm, json in html
+
+V stolpcih bi bile vrednosti proizvedenih živilj. V vrsti pa Statistične regije. Za 
+končno animacijo bom še uporabil kako se je proizvajanje razvijalo skozi čas.
+
+Analiziral bom koliko proizvodov proizvede kakšna regija, kateri proizvod je največkrat proizveden v sloveniji. Kako se ta produkt povečeval/zmanjševal skozi leta.
 ## Program
 
 Glavni program in poročilo se nahajata v datoteki `projekt.Rmd`.
