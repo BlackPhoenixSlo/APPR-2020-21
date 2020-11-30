@@ -27,6 +27,7 @@ source("lib/rstudio.r", encoding="UTF-8")
 Izbral sem si povprečno pridelavo žitaric po regijah.
 
 
+***
 
 # Obdelava, uvoz in čiščenje podatkov
 
