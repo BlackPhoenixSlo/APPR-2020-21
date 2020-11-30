@@ -1,4 +1,11 @@
 # 2. faza: Uvoz podatkov
+library("readxl")   # funkcije za branje Excelovih datotek 
+library("openxlsx")   # funkcije za pisanje Excelovih datotek
+library("dplyr")    # funkcije za lažjo manipulacijo operacij na razpredelnicah
+require(dplyr)
+require(tidyr)
+require(readr)
+
 
 sl <- locale("sl", decimal_mark=",", grouping_mark=".")
 
@@ -53,3 +60,20 @@ druzine <- uvozi.druzine(levels(obcine$obcina))
 # datoteko, tukaj pa bi klicali tiste, ki jih potrebujemo v
 # 2. fazi. Seveda bi morali ustrezno datoteko uvoziti v prihodnjih
 # fazah.
+
+#Preberem povprecni pridelek Slovenije
+podatki_Slovenija <- read_xlsx("podatki/Povprecje_pridelkov_slovenija.xlsx") %>% pivot_longer(-(1), names_to="Proizvodno leto", values_to="Količina proizvedbe t/ha") 
+podatki_Slovenija  %>% write.csv2("podatki/Povprecje_pridelkov_slovenija_Predelano.csv",fileEncoding = "utf8", row.names = FALSE)
+
+#Preberem povprecni pridelek Slovenskih regij
+podatki_Regija <- read_xlsx("podatki/Pregled_pridelkov_regije.xlsx", na=c("", " ", "-")) %>% fill(1:2) %>% drop_na("Količina proizvedbe t/ha")
+podatki_Regija %>% write.csv2("podatki/Pregled_pridelkov_regije_Predelano.csv",fileEncoding = "utf8", row.names = FALSE)
+
+#Preberem povprecni pridelek Regije za 2010
+podatki_Regija_2010 <- read_xlsx("podatki/Pregled_pridelkov_regije_2010.xlsx", na=c("", " ", "-")) %>% pivot_longer(-(1), names_to="Proizvodno leto", values_to="Količina proizvedbe t/ha") %>% drop_na("Količina proizvedbe t/ha") 
+podatki_Regija_2010  %>% write.csv2("podatki/Pregled_pridelkov_regije_2010_Predelano.csv",fileEncoding = "utf8", row.names = FALSE)
+
+#Preberem povprecni pridelek Regije za 2019
+podatki_Regija_2019 <- read_xlsx("podatki/Pregled_pridelkov_regije_2019.xlsx", na=c("", " ", "-")) %>% pivot_longer(-(1), names_to="Proizvodno leto", values_to="Količina proizvedbe t/ha") %>% drop_na("Količina proizvedbe t/ha") 
+podatki_Regija_2019  %>% write.csv2("podatki/Pregled_pridelkov_regije_2019_Predelano.csv",fileEncoding = "utf8", row.names = FALSE)
+
