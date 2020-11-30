@@ -62,18 +62,38 @@ druzine <- uvozi.druzine(levels(obcine$obcina))
 # fazah.
 
 #Preberem povprecni pridelek Slovenije
-podatki_Slovenija <- read_xlsx("podatki/Povprecje_pridelkov_slovenija.xlsx") %>% pivot_longer(-(1), names_to="Proizvodno leto", values_to="Količina proizvedbe t/ha") 
+podatki_Slovenija <- read_xlsx("podatki/Povprecje_pridelkov_slovenija.xlsx") %>% pivot_longer(-(1), names_to="Proizvodno leto", values_to="Kolicina") 
 podatki_Slovenija  %>% write.csv2("podatki/Povprecje_pridelkov_slovenija_Predelano.csv",fileEncoding = "utf8", row.names = FALSE)
 
 #Preberem povprecni pridelek Slovenskih regij
-podatki_Regija <- read_xlsx("podatki/Pregled_pridelkov_regije.xlsx", na=c("", " ", "-")) %>% fill(1:2) %>% drop_na("Količina proizvedbe t/ha")
+podatki_Regija <- read_xlsx("podatki/Pregled_pridelkov_regije.xlsx", na=c("", " ", "-")) %>% fill(1:2) %>% drop_na("Kolicina")
 podatki_Regija %>% write.csv2("podatki/Pregled_pridelkov_regije_Predelano.csv",fileEncoding = "utf8", row.names = FALSE)
 
 #Preberem povprecni pridelek Regije za 2010
-podatki_Regija_2010 <- read_xlsx("podatki/Pregled_pridelkov_regije_2010.xlsx", na=c("", " ", "-")) %>% pivot_longer(-(1), names_to="Proizvodno leto", values_to="Količina proizvedbe t/ha") %>% drop_na("Količina proizvedbe t/ha") 
+podatki_Regija_2010 <- read_xlsx("podatki/Pregled_pridelkov_regije_2010.xlsx", na=c("", " ", "-")) %>% pivot_longer(-(1), names_to="Proizvodno leto", values_to="Kolicina") %>% drop_na("Kolicina") 
 podatki_Regija_2010  %>% write.csv2("podatki/Pregled_pridelkov_regije_2010_Predelano.csv",fileEncoding = "utf8", row.names = FALSE)
 
 #Preberem povprecni pridelek Regije za 2019
-podatki_Regija_2019 <- read_xlsx("podatki/Pregled_pridelkov_regije_2019.xlsx", na=c("", " ", "-")) %>% pivot_longer(-(1), names_to="Proizvodno leto", values_to="Količina proizvedbe t/ha") %>% drop_na("Količina proizvedbe t/ha") 
+podatki_Regija_2019 <- read_xlsx("podatki/Pregled_pridelkov_regije_2019.xlsx", na=c("", " ", "-")) %>% pivot_longer(-(1), names_to="Proizvodno leto", values_to="Kolicina") %>% drop_na("Kolicina") 
 podatki_Regija_2019  %>% write.csv2("podatki/Pregled_pridelkov_regije_2019_Predelano.csv",fileEncoding = "utf8", row.names = FALSE)
+
+
+
+podatki_Slovenija %>% group_by(pridelek) %>%  
+  ggplot(aes(x=pridelek, y=Kolicina)) + geom_boxplot() + theme(axis.text.x = element_text(
+     color="#000000", size=8, angle=90)) +
+  ggtitle("Količina prozvodov") + xlab("Pridelek") + ylab("Količina")
+
+
+
+
+podatki_Regija %>% group_by(pridelek) %>%  
+  ggplot(aes(x=pridelek, y=Kolicina)) + geom_boxplot() + theme(axis.text.x = element_text(
+    color="#000000", size=8, angle=90)) +
+  ggtitle("Količina prozvodov relativno na posamezno regijo") + xlab("Pridelek") + ylab("Količina")
+
+podatki_Regija %>% group_by(pridelek) %>% filter(pridelek=="Breskve") %>%
+  ggplot(aes(x=leto, y=Kolicina)) + geom_boxplot() + theme(axis.text.x = element_text(
+    color="#000000", size=8, angle=90)) +
+  ggtitle("Količina prozvodov breskev v posameznih regijah relativno na posamezno leto") + xlab("Pridelek") + ylab("Količina")
 
