@@ -33,6 +33,7 @@ Izbral sem si povprečno pridelavo žitaric po regijah.
 
 ```{r uvoz}
 source("uvoz/uvoz.r", encoding="UTF-8")
+source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
 Uvozil sem podatke o občinah v obliki elsx s statističnega urada. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
@@ -49,22 +50,16 @@ Uvozil sem podatke o občinah v obliki elsx s statističnega urada. Podatke imam
 
 ```{r histogram, fig.align='center'}
 
-podatki_Slovenija %>% group_by(pridelek) %>%  
-  ggplot(aes(x=pridelek, y=Kolicina)) + geom_boxplot() + theme(axis.text.x = element_text(
-     color="#000000", size=8, angle=90)) +
-  ggtitle("Količina prozvodov v sloveniju t/ha") + xlab("Pridelek") + ylab("Količina")
+graf_SLO_Kolicina_proizvodov
 
-podatki_Regija %>% group_by(pridelek) %>%  
-  ggplot(aes(x=pridelek, y=Kolicina)) + geom_boxplot() + theme(axis.text.x = element_text(
-    color="#000000", size=8, angle=90)) +
-  ggtitle("Količina t/ha prozvodov relativno na posamezno regijo") + xlab("Pridelek") + ylab("Količina")
+graf_SLO_Kolicina_proizvodov_na_regio
 
-podatki_Regija %>% group_by(pridelek) %>% filter(pridelek=="Breskve") %>%
-  ggplot(aes(x=leto, y=Kolicina)) + geom_boxplot() + theme(axis.text.x = element_text(
-    color="#000000", size=8, angle=90)) +
-  ggtitle("Količina t/haprozvodov breskev v posameznih regijah relativno na posamezno leto") + xlab("Pridelek") + ylab("Količina")
+graf_SLO_Kolicina_breskev_v_regiji_na_Leto
 
 
+graf_slovenija
+
+zemljevid
 ```
 
 Spodnji graf prikazuje porazdelitev števila naselij v občinah.
@@ -85,9 +80,9 @@ tm_shape(merge(zemljevid, podatki_Regija, by.x="OB_UIME", by.y="Slovenska regija
   tm_layout(title="Povprečno število otrok v družini")
 
 ```{r zemljevid, fig.align='center', fig.cap='Zemljevid povprečnega števila otrok v družini'}
-tm_shape(merge(zemljevid, povprecja, by.x="OB_UIME", by.y="obcina")) +
-  tm_polygons("povprecje", title="Povprečje") +
-  tm_layout(title="Povprečno število otrok v družini")
+#(merge(zemljevid, povprecja, by.x="OB_UIME", by.y="obcina")) +
+#  tm_polygons("povprecje", title="Povprečje") +
+#  tm_layout(title="Povprečno število otrok v družini")
 ```
 
 ***

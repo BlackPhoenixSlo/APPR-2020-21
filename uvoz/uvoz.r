@@ -1,10 +1,4 @@
 # 2. faza: Uvoz podatkov
-library("readxl")   # funkcije za branje Excelovih datotek 
-library("openxlsx")   # funkcije za pisanje Excelovih datotek
-library("dplyr")    # funkcije za lažjo manipulacijo operacij na razpredelnicah
-require(dplyr)
-require(tidyr)
-require(readr)
 
 
 sl <- locale("sl", decimal_mark=",", grouping_mark=".")
@@ -62,7 +56,7 @@ druzine <- uvozi.druzine(levels(obcine$obcina))
 # fazah.
 
 #Preberem povprecni pridelek Slovenije
-podatki_Slovenija <- read_xlsx("podatki/Povprecje_pridelkov_slovenija.xlsx") %>% pivot_longer(-(1), names_to="Proizvodno leto", values_to="Kolicina") 
+podatki_Slovenija <- read_xlsx("podatki/Povprecje_pridelkov_slovenija.xlsx") %>% pivot_longer(-(1), names_to="Proizvodno_leto", values_to="Kolicina") 
 podatki_Slovenija  %>% write.csv2("podatki/Povprecje_pridelkov_slovenija_Predelano.csv",fileEncoding = "utf8", row.names = FALSE)
 
 #Preberem povprecni pridelek Slovenskih regij
@@ -70,11 +64,11 @@ podatki_Regija <- read_xlsx("podatki/Pregled_pridelkov_regije.xlsx", na=c("", " 
 podatki_Regija %>% write.csv2("podatki/Pregled_pridelkov_regije_Predelano.csv",fileEncoding = "utf8", row.names = FALSE)
 
 #Preberem povprecni pridelek Regije za 2010
-podatki_Regija_2010 <- read_xlsx("podatki/Pregled_pridelkov_regije_2010.xlsx", na=c("", " ", "-")) %>% pivot_longer(-(1), names_to="Proizvodno leto", values_to="Kolicina") %>% drop_na("Kolicina") 
+podatki_Regija_2010 <- read_xlsx("podatki/Pregled_pridelkov_regije_2010.xlsx", na=c("", " ", "-")) %>% pivot_longer(-(1), names_to="Proizvodno_leto", values_to="Kolicina") %>% drop_na("Kolicina") 
 podatki_Regija_2010  %>% write.csv2("podatki/Pregled_pridelkov_regije_2010_Predelano.csv",fileEncoding = "utf8", row.names = FALSE)
 
 #Preberem povprecni pridelek Regije za 2019
-podatki_Regija_2019 <- read_xlsx("podatki/Pregled_pridelkov_regije_2019.xlsx", na=c("", " ", "-")) %>% pivot_longer(-(1), names_to="Proizvodno leto", values_to="Kolicina") %>% drop_na("Kolicina") 
+podatki_Regija_2019 <- read_xlsx("podatki/Pregled_pridelkov_regije_2019.xlsx", na=c("", " ", "-")) %>% pivot_longer(-(1), names_to="Proizvodno_leto", values_to="Kolicina") %>% drop_na("Kolicina") 
 podatki_Regija_2019  %>% write.csv2("podatki/Pregled_pridelkov_regije_2019_Predelano.csv",fileEncoding = "utf8", row.names = FALSE)
 
 
@@ -97,3 +91,15 @@ podatki_Regija %>% group_by(pridelek) %>% filter(pridelek=="Breskve") %>%
     color="#000000", size=8, angle=90)) +
   ggtitle("Količina prozvodov breskev v posameznih regijah relativno na posamezno leto") + xlab("Pridelek") + ylab("Količina")
 
+
+# Graf: Zemljevid
+
+Slovenija <- uvozi.zemljevid("http://biogeo.ucdavis.edu/data/gadm2.8/shp/SVN_adm_shp.zip",
+                             "SVN_adm1") %>% fortify()
+colnames(Slovenija)[12] <- 'Regija'
+Slovenija$Regija <- gsub('Notranjsko-kraška', 'Primorsko-notranjska', Slovenija$Regija)
+Slovenija$Regija <- gsub('Spodnjeposavska', 'Posavska', Slovenija$Regija)
+Slovenija$Regija <- gsub('GoriĹˇka', 'Goriška', Slovenija$Regija)
+Slovenija$Regija <- gsub('Obalno-kraĹˇka', 'Obalno-kraška', Slovenija$Regija)
+Slovenija$Regija <- gsub('Notranjsko-kraĹˇka', 'Notranjsko-kraška', Slovenija$Regija)
+Slovenija$Regija <- gsub('KoroĹˇka', 'Koroška', Slovenija$Regija)
