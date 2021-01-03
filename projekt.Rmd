@@ -1,5 +1,5 @@
 ---
-title: "Analiza podatkov Povprečni pridelek (t/ha) pomembnejših kmetijskih kultur, po statističnih regijah, Slovenija, letno s programom R, 2020"
+title: "Analiza kmetiskih proizvodov v Sloveniji po Regijah"
 author: "Jaka Basej"
 output:
   html_document: default
@@ -21,50 +21,86 @@ source("lib/libraries.r", encoding="UTF-8")
 # Izris povezave do RStudia na Binderju
 source("lib/rstudio.r", encoding="UTF-8")
 ```
+***
+# Uvod
 
-# Izbira teme
+V svojem projektu bom analiziral vpliv naselij ter površine regij na proizvod kmetiskih dobrin v Sloveniji. Podatke o številu proizvodov, ki jih proizvajajo različne regije sem dobil na spletni strani SURS-a. Površino regij in število nasel sem pobral iz Wikipedije.
 
-Izbral sem si povprečno pridelavo žitaric po regijah.
+V tabelah imam število proizvoda kmetiskih dobrin po celi sloveniji od leta 2010 do 2019. V tabelah imam shranjeno gostoto prebivalstva v posamezni občini ter regiji.
+
+Analiziral bom kako se veča in majša proizvod kmetiskih dobrin skozi leta, ter kako vpliva površina in število naselij na količino proizvoda slovenskih dobrin.
+
+***
+
+# Spletne povezane do tabel:
+
+[Kultune dobrine](<https://pxweb.stat.si/SiStatData/pxweb/sl/Data/-/1502410S.px>)
+
+[Podatki o sloveniji](https://sl.wikipedia.org/wiki/Seznam_občin_v_Sloveniji>)
 
 
 ***
 
 # Obdelava, uvoz in čiščenje podatkov
 
-```{r uvoz}
+```{r uvoz, echo=FALSE,message=FALSE, warning=FALSE , results='hide'}
 source("uvoz/uvoz.r", encoding="UTF-8")
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
-Uvozil sem podatke o občinah v obliki elsx s statističnega urada. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
+Uvozil sem podatke o občinah v obliki xlsx s statističnega urada. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
 
-1. `žitarice` - Vrsta proizvedene žitarice,
-  - `Proizvodno leto` - Leto prozvedene žitarice,
-  - `Količina proizvedbe t/ha` - spremenljivka: količina proizvdenih žitaric,
+1. TABELA: Proizvedba žitaric v celotni Sloveniji od leta 2010 do 2019 
+  - `žitarice` (Character)- Vrsta proizvedene žitarice,
+  - `leto` (Character)- Leto prozvedene žitarice,
+  - `Kolicina`(Numeric)- spremenljivka: količina proizvdenih žitaric,
   
-2. `žitarice` - Vrsta proizvedene žitarice,
-  - `Slovenska regija` - Območje proivedenih žitaric,
-  - `Proizvodno leto` - Leto prozvedene žitarice,
-  - `Količina proizvedbe t/ha` - spremenljivka: količina proizvdenih žitaric,
+2. TABELA: Proizvedba žitaric po Slovenskih regijah od leta 2010 do 2019 
+  - `žitarice` (Character)- Vrsta proizvedene žitarice,
+  - `Regija` (Character)- Območje proivedenih žitaric,
+  - `leto` (Numeric)- Leto prozvedene žitarice,
+  - `Kolicina`(Numeric)- spremenljivka: količina proizvdenih žitaric,
+  
+3. TABELA: Vsebuje proivedbo žitaric tako kot podatke o velikosti regije in njihovih prebivalcih
+  - `pridelek` (Character)- Vrsta proizvedene žitarice,
+  - `Regija` (Character)- Območje proivedenih žitaric,
+  - `leto` (Numeric)- Leto prozvedene žitarice,
+  - `Kolicina`(Numeric)- spremenljivka: količina proizvdenih žitaric,
+  - `Površina` (Numeric)- Površina v ha
+  - `Prebivalci` (Numeric)- Število prebivalcev v regiji
+  - `Naselja` (Numeric)- Število naselij v regiji
+  - `Gostota` (Numeric)- Količina prebivalcev na ha
+  
 
 
+V naslednjih 4 grafih bom prikazal, da se količina proizvedenih kmetiskih dobrin skozi leta spreminja, veliko bolj se spreminja količina kmetishih dobrin, ki je porabimo več, to so npr. breskve, jabolka, krompir, straža in zelje. Proizvedba kmetiskih kultur, ki se porabljajo v majših količinah npr. Grozdje, olive, Riž, trava in podobno pa se prozvaja skozi leta s konstantno količino.
 ```{r histogram, fig.align='center'}
 
 graf_SLO_Kolicina_proizvodov
 
+
+```
+
+Drugi graf prikazuje, da proizvod ni konstanten na hektarski meter skozi vse Slovenske regije. Hkrati pa tudi ni odvisna količina letnega proizvoda regij od količine letnega proizvoda kmetiskih dobrin. 
+
+```{r histogram, fig.align='center'}
+
+
 graf_SLO_Kolicina_proizvodov_na_regio
+
+
+```
+
+Iz naslednjih dveh grafov lahko razberemo, da se nekatere dobrine proizvajajo po celi sloveniji druga pa ne. Ter, da je v letu 2012 in 2017 se zmanjšala proizvedba kmetiskih dobrin, kar potrjuje, da se po močni zimi in veliki toči zmanjša proizvod kmetiskih dobrin.
+```{r histogram, fig.align='center'}
+
+
+graf_SLO_Kolicina_koruze_v_regiji_na_Leto
 
 graf_SLO_Kolicina_breskev_v_regiji_na_Leto
 
 
-graf_slovenija
-
-zemljevid
 ```
-
-Spodnji graf prikazuje porazdelitev števila naselij v občinah.
-
-
 ***
 
 # Analiza in vizualizacija podatkov
