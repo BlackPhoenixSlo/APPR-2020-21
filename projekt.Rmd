@@ -74,7 +74,8 @@ Uvozil sem podatke o občinah v obliki xlsx s statističnega urada. Podatke imam
 
 
 V naslednjih 4 grafih bom prikazal, da se količina proizvedenih kmetiskih dobrin skozi leta spreminja, veliko bolj se spreminja količina kmetishih dobrin, ki je porabimo več, to so npr. breskve, jabolka, krompir, straža in zelje. Proizvedba kmetiskih kultur, ki se porabljajo v majših količinah npr. Grozdje, olive, Riž, trava in podobno pa se prozvaja skozi leta s konstantno količino.
-```{r histogram, fig.align='center'}
+
+```{r histogram1, fig.align='center'}
 
 graf_SLO_Kolicina_proizvodov
 
@@ -83,7 +84,7 @@ graf_SLO_Kolicina_proizvodov
 
 Drugi graf prikazuje, da proizvod ni konstanten na hektarski meter skozi vse Slovenske regije. Hkrati pa tudi ni odvisna količina letnega proizvoda regij od količine letnega proizvoda kmetiskih dobrin. 
 
-```{r histogram, fig.align='center'}
+```{r histogram2, fig.align='center'}
 
 
 graf_SLO_Kolicina_proizvodov_na_regio
@@ -92,14 +93,15 @@ graf_SLO_Kolicina_proizvodov_na_regio
 ```
 
 Iz naslednjih dveh grafov lahko razberemo, da se nekatere dobrine proizvajajo po celi sloveniji druga pa ne. Ter, da je v letu 2012 in 2017 se zmanjšala proizvedba kmetiskih dobrin, kar potrjuje, da se po močni zimi in veliki toči zmanjša proizvod kmetiskih dobrin.
-```{r histogram, fig.align='center'}
+
+```{r histogram3, fig.align='center'}
 
 
 graf_SLO_Kolicina_koruze_v_regiji_na_Leto
 
 graf_SLO_Kolicina_breskev_v_regiji_na_Leto
 
-
+zemljevid
 ```
 ***
 
