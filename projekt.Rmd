@@ -38,14 +38,27 @@ source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 
 Uvozil sem podatke o občinah v obliki elsx s statističnega urada. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
 
-1. `žitarice` - Vrsta proizvedene žitarice,
-  - `Proizvodno leto` - Leto prozvedene žitarice,
-  - `Količina proizvedbe t/ha` - spremenljivka: količina proizvdenih žitaric,
+1. Proizvedba žitaric v celotni Sloveniji od leta 2010 do 2019 
+  - `žitarice` (Character)- Vrsta proizvedene žitarice,
+  - `leto` (Character)- Leto prozvedene žitarice,
+  - `Kolicina`(Numeric)- spremenljivka: količina proizvdenih žitaric,
   
-2. `žitarice` - Vrsta proizvedene žitarice,
-  - `Slovenska regija` - Območje proivedenih žitaric,
-  - `Proizvodno leto` - Leto prozvedene žitarice,
-  - `Količina proizvedbe t/ha` - spremenljivka: količina proizvdenih žitaric,
+2. Proizvedba žitaric po Slovenskih regijah od leta 2010 do 2019 
+  - `žitarice` (Character)- Vrsta proizvedene žitarice,
+  - `Regija` (Character)- Območje proivedenih žitaric,
+  - `leto` (Numeric)- Leto prozvedene žitarice,
+  - `Kolicina`(Numeric)- spremenljivka: količina proizvdenih žitaric,
+  
+3. Tabela, ki vsebuje proivedbo žitaric tako kot podatke o velikosti regije in njihovih prebivalcih
+  - `pridelek`  (Character)- Vrsta proizvedene žitarice,
+  - `Regija` (Character)- Območje proivedenih žitaric,
+  - `leto` (Numeric)- Leto prozvedene žitarice,
+  - `Kolicina`(Numeric)- spremenljivka: količina proizvdenih žitaric,
+  - `Površina` (Numeric)- Površina v ha
+  - `Prebivalci` (Numeric)- Število prebivalcev v regiji
+  - `Naselja` (Numeric)- Število naselij v regiji
+  - `Gostota` (Numeric)- Količina prebivalcev na ha
+  
 
 
 ```{r histogram, fig.align='center'}
@@ -62,7 +75,7 @@ graf_slovenija
 zemljevid
 ```
 
-Spodnji graf prikazuje porazdelitev števila naselij v občinah.
+
 
 
 ***
