@@ -99,10 +99,25 @@ Iz naslednjih dveh grafov lahko razberemo, da se nekatere dobrine proizvajajo po
 
 graf_SLO_Kolicina_koruze_v_regiji_na_Leto
 
+
 graf_SLO_Kolicina_breskev_v_regiji_na_Leto
 
-zemljevid
 ```
+
+
+Na prodnjih dveh grafih so prikazane Slovenske regije ter koliko kmetiskih proizvodov v tonah so proizvedle med letom 2010-2019. 
+
+
+
+```{r histogram4, fig.align='center'}
+
+
+zemljevid
+
+graf_slovenija
+```
+
+
 ***
 
 # Analiza in vizualizacija podatkov

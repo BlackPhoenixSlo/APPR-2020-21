@@ -39,11 +39,14 @@ graf_SLO_Kolicina_breskev_v_regiji_na_Leto <- podatki_Regija %>% group_by(pridel
 
 
 #========================================================================================================
+# Površina slovenije je 20329.9 ha sem izračunal <= sum(Slovenske_regije$povrsina)
+ 
+
 
 
 graf_slovenija <- ggplot(Slovenija, aes(x=long, y=lat, group=group, fill=Regija)) +
   geom_polygon() +
-  labs(title="Slovenija") +
+  labs(title="") +
   theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), panel.background = element_blank())
 
 #========================================================================================================
@@ -59,7 +62,21 @@ zemljevid <- ggplot() +
   geom_polygon(data = right_join(proizvedba_regij,Slovenija, by = c('Regija')),
                aes(x = long, y = lat, group = group, fill = Kolicina_v_tonah ))+
   xlab("") + ylab("") + ggtitle('Količina proizvoda v posameznih regijah v tonah') + 
-  theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank(), panel.background = element_blank()) 
-  
+  theme( axis.text=element_blank(), axis.ticks=element_blank(), panel.background = element_blank()) +
+ scale_fill_gradient(low = '#25511C', high='#2BFF00', limits = c(0,8000000)) # dodej nekej masesto "4x +06"
+zemljevid$labels$fill <- 'Količina proizvoda v tonah'
+
+
+graf_otroci_indeks <- ggplot((data = podatki_Slovenija), aes(x=leto, y=Kolicina, col= pridelek, group = 1)) + geom_point() + geom_line()
+#kako narest da je ta grav tak da ma povezane samo oranyne pike
+
+
+#kako narest, da bi bili pridelki povezani z črto koliko se večajo leta horizontalno
+graf_indeks <- ggplot(data = podatki_Regija, aes(x=leto, y=Kolicina, color=Regija)) + geom_point(aes(frame=pridelek))
+graf_indeks <- graf_indeks + xlab('Terciarno šolanje') + ylab('Diplomanti')
+graf_indeks <- ggplotly(graf_indeks)
+
+
+
 
 

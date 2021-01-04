@@ -38,7 +38,7 @@ Sloveski_podatki_urejeni$Regija <- gsub('Notranjsko-kraška', 'Primorsko-notranj
 
 
 #Preberem povprecni pridelek Slovenije
-podatki_Slovenija <- read_xlsx("podatki/Povprecje_pridelkov_slovenija.xlsx") %>% pivot_longer(-(1), names_to="Proizvodno leto", values_to="Kolicina") 
+podatki_Slovenija <- read_xlsx("podatki/Povprecje_pridelkov_slovenija.xlsx") %>% pivot_longer(-(1), names_to="leto", values_to="Kolicina") 
 podatki_Slovenija  %>% write.csv2("podatki/Povprecje_pridelkov_slovenija_Predelano.csv",fileEncoding = "utf8", row.names = FALSE)
 
 #Preberem povprecni pridelek Slovenskih regij
