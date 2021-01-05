@@ -1,7 +1,7 @@
 ---
 title: "Analiza kmetiskih proizvodov v Sloveniji po Regijah"
 author: "Jaka Basej"
-date: "5 maj 2019"
+date: "5 januar 2020"
 always_allow_html: true
 output:
   html_document: default
@@ -121,33 +121,22 @@ zemljevid
 zemljevid_reduciran
 graf_slovenija
 
+```
+
+V naslednjiem grafu prikazujem koliko je bilo proizvedenih kmetiskih produktov v vsaki regiji, koliko upliva število naselji na kmetiski proizvod in število naselji v teh letih, ki se ne spreminja. To nam pogaže da večje kot je število naselji, manj se spreminja delež proizvedenega med vsemi kraji v regiji. To nam prikaže, da je polek površine regije je količina proizvoda odvisna tudi od zazidanega območja. 
+```{r histogram5, fig.align='center'}
 
 graf_indeks_reduciran
+
+```
+
+Za lažjo predstavitel vseh podatkov dodam graf, ki prikazuje koliko vsake kulturne dobrine se proizvede v vsaki regiji.
+```{r histogram6, fig.align='center'}
+
 graf_indeks
+
 ```
 
-
-***
-
-# Analiza in vizualizacija podatkov
-
-```{r vizualizacija, results='hide'}
-source("vizualizacija/vizualizacija.r", encoding="UTF-8")
-```
-
-Spodnji zemljevid prikazuje povprečno velikost družine za vsako občino.
-
-tm_shape(merge(zemljevid, podatki_Regija, by.x="OB_UIME", by.y="Slovenska regija")) +
-  tm_polygons("povprecje", title="Povprečje") +
-  tm_layout(title="Povprečno število otrok v družini")
-
-```{r zemljevid, fig.align='center', fig.cap='Zemljevid povprečnega števila otrok v družini'}
-#(merge(zemljevid, povprecja, by.x="OB_UIME", by.y="obcina")) +
-#  tm_polygons("povprecje", title="Povprečje") +
-#  tm_layout(title="Povprečno število otrok v družini")
-```
-
-***
 
 # Napredna analiza podatkov
 
@@ -155,16 +144,9 @@ tm_shape(merge(zemljevid, podatki_Regija, by.x="OB_UIME", by.y="Slovenska regija
 source("analiza/analiza.r", encoding="UTF-8")
 ```
 
-Spodnji graf prikazuje povezavo med številom naselij in površino občine.
-
+Seštel sem v tonah količino kmetiske proizvodnje v vsakem letu in uporabil drugo polinomsko analino na njem. Vidimo lahko, da je predvideno, da bo količina kmetiskih proizvodov narasla, hkrati pa je prva divijacija zelo visoka, tako, da nemoremo natančno predvitedeti prihodnjosti.
 ```{r graf, fig.align='center', fig.cap='Povezava med številom naselij in površino občine'}
-ggplot(inner_join(obcine, data.frame(obcina=names(skupine),
-                                     skupina=factor(skupine)), by="obcina")
-, aes(x=povrsina, y=naselja, color=skupina, size=prebivalci/1000)) + geom_point() +
-  ggtitle("Število naselij glede na površino občine") +
-  xlab(expression("Površina (km"^2 * ")")) + ylab("Št. naselij") +
-  guides(color=guide_legend(title="Skupina"),
-         size=guide_legend(title="Prebivalci (* 1000)"))
+graf_napoved
 ```
 
 ***

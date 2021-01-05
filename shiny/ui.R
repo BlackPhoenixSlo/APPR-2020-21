@@ -2,10 +2,10 @@ library(shiny)
 
 shinyUI(fluidPage(
   
-  titlePanel("Slovenske občine"),
+  titlePanel("Slovenske Regije"),
   
   tabsetPanel(
-      tabPanel("Velikost družine",
+      tabPanel("Velikost proizvodnje",
                DT::dataTableOutput("druzine")),
       
       tabPanel("Število naselij",
