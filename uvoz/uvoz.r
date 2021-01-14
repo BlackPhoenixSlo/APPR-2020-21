@@ -61,7 +61,7 @@ Skupna_tabela <- left_join(podatki_Regija, Sloveski_podatki_urejeni, by=c('Regij
 # Graf: Zemljevid
 
 Slovenija <- uvozi.zemljevid("http://biogeo.ucdavis.edu/data/gadm2.8/shp/SVN_adm_shp.zip",
-                             "SVN_adm1") %>% fortify()
+                             "SVN_adm1", encoding = "UTF-8") %>% fortify()
 colnames(Slovenija)[12] <- 'Regija'
 Slovenija$Regija <- gsub('Spodnjeposavska', 'Posavska', Slovenija$Regija)
 Slovenija$Regija <- gsub('GoriĹˇka', 'Goriška', Slovenija$Regija)

@@ -148,6 +148,7 @@ Seštel sem v tonah količino kmetiske proizvodnje v vsakem letu in uporabil dru
 ```{r graf, fig.align='center', fig.cap='Povezava med številom naselij in površino občine'}
 graf_napoved
 ```
+Iz tega kar sem pokazal, je razvidno, da je veliko različnih vplivov, ki vpliva na količino kmetiskih proizvodov v Sloveniji. Trend je naraščajoč in nihanje količine skozi leto je manjše, če je število naselj večje. Iz tega sem ugotovil, da bo naslednja leta ptoizvod naraščal, ker število ljudi v Sloveniji narašča, v kolikor bo v Slovenij kriza bodo Redije, ki imajo več naselij manj prizadete. 
 
 ***
 
