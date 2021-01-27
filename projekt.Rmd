@@ -48,6 +48,11 @@ Analiziral bom kako se veča in majša proizvod kmetiskih dobrin skozi leta, ter
 
 ```{r uvoz, echo=FALSE,message=FALSE, warning=FALSE , results='hide'}
 source("uvoz/uvoz.r", encoding="UTF-8")
+
+```
+
+
+```{r uvoz2, echo=FALSE,message=FALSE, warning=FALSE , results='hide'}
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
