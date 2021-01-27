@@ -1,5 +1,5 @@
 ---
-title: "Analiza kmetiskih proizvodov v Sloveniji po Regijah"
+title: "Analiza kmetijskih proizvodov v Sloveniji po regijah"
 author: "Jaka Basej"
 date: "5. januar 2021"
 always_allow_html: true
