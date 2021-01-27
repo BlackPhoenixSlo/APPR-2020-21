@@ -55,7 +55,7 @@ podatki <- Slovenija %>% left_join(proizvedba_regij, by="Regija")
 zemljevid <- ggplot(data = podatki, aes(x = long, y = lat, fill = Kolicina_v_tonah , label=(Regija))) +
   geom_polygon(aes( group = group))+ geom_text(data=podatki %>% group_by(Regija, Kolicina_v_tonah)  %>% 
                                                  summarise(long=mean(long), lat=mean(lat)), size=3)+
-  xlab("") + ylab("") + ggtitle('Količina proizvoda v posameznih regijah v miljon tonah') + 
+  xlab("") + ylab("") + ggtitle('Količina proizvoda po regijah v miljon tonah') + 
   theme( axis.text=element_blank(), axis.ticks=element_blank(), panel.background = element_blank()) +
   scale_fill_gradient(low = '#25511C', high='#2BFF00', limits = c(0,8)) # dodej nekej masesto "4x +06"
 zemljevid$labels$fill <- 'Količina proizvoda v miljonih ton'
@@ -63,7 +63,7 @@ zemljevid$labels$fill <- 'Količina proizvoda v miljonih ton'
 zemljevid_reduciran <- ggplot() +
   geom_polygon(data = right_join(proizvedba_regij,Slovenija, by = c('Regija')),
                aes(x = long, y = lat, group = group, fill = (Kolicina_v_tonah / Naselja) ))+
-  xlab("") + ylab("") + ggtitle('Količina proizvoda v posameznih regijah v tonah relativno z številom naselij') + 
+  xlab("") + ylab("") + ggtitle('Količina proizvoda po regijah v ton / ha / št. Naselij') + 
   theme( axis.text=element_blank(), axis.ticks=element_blank(), panel.background = element_blank()) +
   scale_fill_gradient(low = '#25511C', high='#2BFF00') 
 zemljevid_reduciran$labels$fill <- 'Količina proizvoda v tonah'
