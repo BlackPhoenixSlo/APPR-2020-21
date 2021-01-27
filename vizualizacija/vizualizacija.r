@@ -8,18 +8,18 @@
 #Prvi trije grafi
 graf_SLO_Kolicina_proizvodov <- podatki_Slovenija %>% group_by(pridelek) %>%  
   ggplot(aes(x=pridelek, y=Kolicina)) + geom_boxplot(color="blue", fill="yellow", alpha=0.3) + theme(axis.text.x = element_text(
-    color="#000000", size=8, angle=90)) +
+    color="#000000", size=8, angle=75,hjust=0.5,vjust=0.9)) +
   ggtitle("Količina ton/ha proizvedbe vsakega proizvoda, Slovenija") + xlab("Vrsta pridelka") + ylab("Količina t/ha proizvoda")
 
 graf_SLO_Kolicina_proizvodov_na_regio <- podatki_Regija %>% group_by(pridelek) %>%  
   ggplot(aes(x=pridelek, y=Kolicina)) + geom_boxplot(color="black", fill="green", alpha=0.3) + theme(axis.text.x = element_text(
     color="#000000", size=8, angle=90)) +
-  ggtitle("Količina ton/ha proizvedbe vsakega proizvoda, Po regijah") + xlab("pridelka") + ylab("Količina t/ha proizvoda")
+  ggtitle("Količina ton/ha proizvedbe vsakega proizvoda, Po regijah") + xlab("Vrsta pridelka") + ylab("Količina t/ha proizvoda")
 
 graf_SLO_Kolicina_koruze_v_regiji_na_Leto <- podatki_Regija %>% group_by(pridelek) %>% filter(pridelek=="Koruza") %>%
   ggplot(aes(x=leto, y=Kolicina)) + geom_boxplot() + theme(axis.text.x = element_text(
     color="#000000", size=8, angle=90)) +
-  ggtitle("Količina ton/ha proizvedbe koruze, Slovenija") + xlab("Leto proizvoda koruze") + ylab("Količina t/ha proizvoda")
+  ggtitle("Količina ton/ha proizvedbe koruze, Slovenija") + xlab("Leto proizvoda koruze") + geom_boxplot(color="black", fill="yellow", alpha=0.3) + ylab("Količina t/ha proizvoda")
 
 graf_SLO_Kolicina_breskev_v_regiji_na_Leto <- podatki_Regija %>% group_by(pridelek) %>% filter(pridelek=="Breskve") %>%
   ggplot(aes(x=leto, y=Kolicina)) + geom_boxplot() + theme(axis.text.x = element_text(
@@ -70,15 +70,22 @@ zemljevid_reduciran$labels$fill <- 'Količina proizvoda v tonah'
 
 
 
+podatki_Slovenija_2 <- podatki_Slovenija %>% group_by(pridelek) %>% filter(Kolicina > 10 )
 graf_otroci_indeks <- 
   
-ggplot((data = podatki_Slovenija), aes(x=leto, y=Kolicina, col= pridelek, group = pridelek)) +  geom_line() + geom_point()
+ggplot((data = podatki_Slovenija_2), aes(x=leto, y=Kolicina, col= pridelek, group = pridelek))  + ggtitle('Proizvodnja kmetiskih kultur') +  geom_line() + geom_point()
 #kako narest da je ta grav tak da ma povezane samo oranyne pike
+graf_otroci_indeks <- graf_otroci_indeks + xlab('Leto') + ylab('Količina')
+graf_otroci_indeks$labels$fill <- 'Pridelki nad 10 ton/ha'
+
+podatki_Regija2 <- podatki_Regija %>% group_by(pridelek) %>% filter(Kolicina > 15 ) 
 
 
 #kako narest, da bi bili pridelki povezani z črto koliko se večajo leta horizontalno
-graf_indeks <- ggplot(data = podatki_Regija , aes(x=leto, y=Kolicina, color=Regija, group = Regija)) + geom_line(aes(frame=pridelek)) + geom_line(aes(frame=pridelek)) +scale_fill_gradient(low = '#25511C', high='#2BFF00', limits = c(0,30))
-graf_indeks <- graf_indeks + xlab('Leto proizvodnje') + ylab('Količina proizvodov t/ha')
+
+graf_indeks <- ggplot(data = podatki_Regija2 , aes(x=Regija, y=Kolicina, color=pridelek, group = pridelek))  + geom_point(aes(frame=leto)) +scale_fill_gradient(low = '#25511C', high='#2BFF00', limits = c(0,30)) + theme(axis.text.x = element_text(
+  color="#000000", size=8, angle=75,hjust=0.5,vjust=0.9))
+graf_indeks <- graf_indeks + xlab('Pokrajna') + ylab('Količina proizvodov t/ha') 
 graf_indeks <- ggplotly(graf_indeks)
 
 

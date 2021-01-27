@@ -1,7 +1,7 @@
 ---
 title: "Analiza kmetijskih proizvodov v Sloveniji po regijah"
 author: "Jaka Basej"
-date: "5. januar 2021"
+date: "27. Januar 2021"
 always_allow_html: true
 output:
   html_document: default
@@ -27,11 +27,11 @@ source("lib/rstudio.r", encoding="UTF-8")
 ***
 # Uvod   
 
-V svojem projektu bom analiziral vpliv naselij ter površine regij na proizvod kmetiskih dobrin v Sloveniji. Podatke o številu proizvodov, ki jih proizvajajo različne regije sem dobil na spletni strani SURS-a. Površino regij in število nasel sem pobral iz Wikipedije.
+V svojem projektu bom analiziral vpliv naselij ter površine regij na proizvod kmetiskih dobrin v Sloveniji. Podatke o številu proizvodov, ki jih proizvajajo različne regije sem dobil na spletni strani SURS-a. Površino regij in število naselij sem pobral iz Wikipedije.
 
-V tabelah imam število proizvoda kmetiskih dobrin po celi sloveniji od leta 2010 do 2019. V tabelah imam shranjeno gostoto prebivalstva v posamezni občini ter regiji.
+V tabelah imam število proizvoda kmetiskih dobrin po celi Sloveniji od leta 2010 do 2019. V tabelah imam shranjeno gostoto prebivalstva v posamezni občini ter regiji.
 
-Analiziral bom kako se veča in majša proizvod kmetiskih dobrin skozi leta, ter kako vpliva površina in število naselij na količino proizvoda slovenskih dobrin.
+Analiziral bom kako se veča in manjša proizvod kmetiskih dobrin skozi leta, ter kako vpliva površina in število naselij na količino proizvoda slovenskih dobrin.
 
 ***
 
@@ -56,32 +56,32 @@ source("uvoz/uvoz.r", encoding="UTF-8")
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
-Uvozil sem podatke o občinah v obliki xlsx s statističnega urada. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
+Uvozil sem podatke o občinah v obliki xlsx s statističnega urada. Podatke imam v dveh razpredelnicah v obliki *tidy data*.
 
-1. TABELA: Proizvedba žitaric v celotni Sloveniji od leta 2010 do 2019 
+1. TABELA: Proizvedba žitaric po celotni Sloveniji od leta 2010 do 2019 
   - `žitarice` (Character)- Vrsta proizvedene žitarice,
-  - `leto` (Character)- Leto prozvedene žitarice,
+  - `leto` (Character)- Leto proizvedene žitarice,
   - `Kolicina`(Numeric)- spremenljivka: količina proizvdenih žitaric,
   
 2. TABELA: Proizvedba žitaric po Slovenskih regijah od leta 2010 do 2019 
   - `žitarice` (Character)- Vrsta proizvedene žitarice,
-  - `Regija` (Character)- Območje proivedenih žitaric,
-  - `leto` (Numeric)- Leto prozvedene žitarice,
+  - `Regija` (Character)- Območje proizvedenih žitaric,
+  - `leto` (Numeric)- Leto proizvedene žitarice,
   - `Kolicina`(Numeric)- spremenljivka: količina proizvdenih žitaric,
   
-3. TABELA: Vsebuje proivedbo žitaric tako kot podatke o velikosti regije in njihovih prebivalcih
+3. TABELA: Vsebuje proizvedbo žitaric tako kot podatke o velikosti regije in njihovih prebivalcih
   - `pridelek` (Character)- Vrsta proizvedene žitarice,
-  - `Regija` (Character)- Območje proivedenih žitaric,
-  - `leto` (Numeric)- Leto prozvedene žitarice,
-  - `Kolicina`(Numeric)- spremenljivka: količina proizvdenih žitaric,
-  - `Površina` (Numeric)- Površina v ha
+  - `Regija` (Character)- Območje proizvedenih žitaric,
+  - `leto` (Numeric)- Leto proizvedene žitarice,
+  - `Kolicina`(Numeric)-  količina proizvdenih žitaric,
+  - `Površina` (Numeric)- Površina v hektarskih metrih
   - `Prebivalci` (Numeric)- Število prebivalcev v regiji
   - `Naselja` (Numeric)- Število naselij v regiji
-  - `Gostota` (Numeric)- Količina prebivalcev na ha
+  - `Gostota` (Numeric)- Količina prebivalcev na hektarski meter
   
 
 
-V naslednjih 4 grafih bom prikazal, da se količina proizvedenih kmetiskih dobrin skozi leta spreminja, veliko bolj se spreminja količina kmetishih dobrin, ki je porabimo več, to so npr. breskve, jabolka, krompir, straža in zelje. Proizvedba kmetiskih kultur, ki se porabljajo v majših količinah npr. Grozdje, olive, Riž, trava in podobno pa se prozvaja skozi leta s konstantno količino.
+V naslednjih 4 grafih bom prikazal, da se količina proizvedenih kmetijskih dobrin skozi leta spreminja, veliko bolj se spreminja količina kmetishih dobrin, ki je porabimo več, to so npr. breskve, jabolka, krompir, straža in zelje. Proizvedba kmetijskih kultur, ki se porabljajo v majših količinah npr. grozdje, olive, riž, trava in podobno pa se prozvaja skozi leta s konstantno količino.
 
 ```{r histogram1, fig.align='center'}
 
@@ -90,7 +90,7 @@ graf_SLO_Kolicina_proizvodov
 
 ```
 
-Drugi graf prikazuje, da proizvod ni konstanten na hektarski meter skozi vse Slovenske regije. Hkrati pa tudi ni odvisna količina letnega proizvoda regij od količine letnega proizvoda kmetiskih dobrin. 
+Drugi graf prikazuje, da proizvod ni konstanten na hektarski meter skozi vse Slovenske regije. Hkrati pa tudi ni odvisna količina letnega proizvoda regij od količine letnega proizvoda kmetijskih dobrin. 
 
 ```{r histogram2, fig.align='center'}
 
@@ -100,7 +100,7 @@ graf_SLO_Kolicina_proizvodov_na_regio
 
 ```
 
-Iz naslednjih dveh grafov lahko razberemo, da se nekatere dobrine proizvajajo po celi sloveniji druga pa ne. Ter, da je v letu 2012 in 2017 se zmanjšala proizvedba kmetiskih dobrin, kar potrjuje, da se po močni zimi in veliki toči zmanjša proizvod kmetiskih dobrin.
+Iz naslednjih dveh grafov lahko razberemo, da se nekatere dobrine proizvajajo po celi Sloveniji druge pa ne. V nadaljevanju razberemo, da je v letu 2012 in 2017 se zmanjšala proizvedba kmetijskih dobrin, kar potrjuje, da se po močni zimi in veliki toči zmanjša proizvod kmetijskih dobrin.
 
 ```{r histogram3, fig.align='center'}
 
@@ -115,27 +115,21 @@ graf_SLO_Kolicina_koruze_v_regiji_na_Leto
 ```
 
 
-Na prodnjih dveh grafih so prikazane Slovenske regije ter koliko kmetiskih proizvodov v tonah so proizvedle med letom 2010-2019. 
+Na sodnjih dveh grafih so prikazane Slovenske regije ter koliko kmetijskih proizvodov v tonah se proizvede med letoma 2010 in 2019. 
 
 
 
 ```{r histogram4, fig.align='center'}
 
 
-zemljevid
+ # zemljevid
 zemljevid_reduciran
 graf_slovenija
 
 ```
 
-V naslednjiem grafu prikazujem koliko je bilo proizvedenih kmetiskih produktov v vsaki regiji, koliko upliva število naselji na kmetiski proizvod in število naselji v teh letih, ki se ne spreminja. To nam pogaže da večje kot je število naselji, manj se spreminja delež proizvedenega med vsemi kraji v regiji. To nam prikaže, da je polek površine regije je količina proizvoda odvisna tudi od zazidanega območja. 
-```{r histogram5, fig.align='center'}
 
-graf_indeks_reduciran
-
-```
-
-Za lažjo predstavitel vseh podatkov dodam graf, ki prikazuje koliko vsake kulturne dobrine se proizvede v vsaki regiji.
+Za lažjo predstavitel vseh podatkov dodajam graf, ki prikazuje koliko najrazširjenih treh kmetijskih dobrin se proizvede v vsaki regiji.
 ```{r histogram6, fig.align='center'}
 
 graf_indeks
@@ -149,11 +143,11 @@ graf_indeks
 source("analiza/analiza.r", encoding="UTF-8")
 ```
 
-Seštel sem v tonah količino kmetiske proizvodnje v vsakem letu in uporabil drugo polinomsko analino na njem. Vidimo lahko, da je predvideno, da bo količina kmetiskih proizvodov narasla, hkrati pa je prva divijacija zelo visoka, tako, da nemoremo natančno predvitedeti prihodnjosti.
+Seštel sem v tonah količino kmetijske proizvodnje v vsakem letu in uporabil drugo polinomsko analino na njem. Vidimo lahko, da je predvideno, da bo količina kmetijskih proizvodov narasla, hkrati pa je prva divijacija zelo visoka, tako, da nemoremo natančno predvideti prihodnosti.
 ```{r graf, fig.align='center', fig.cap='Povezava med številom naselij in površino občine'}
 graf_napoved
 ```
-Iz tega kar sem pokazal, je razvidno, da je veliko različnih vplivov, ki vpliva na količino kmetiskih proizvodov v Sloveniji. Trend je naraščajoč in nihanje količine skozi leto je manjše, če je število naselj večje. Iz tega sem ugotovil, da bo naslednja leta ptoizvod naraščal, ker število ljudi v Sloveniji narašča, v kolikor bo v Slovenij kriza bodo Redije, ki imajo več naselij manj prizadete. 
+Iz tega kar sem pokazal, je razvidno, da je veliko različnih vplivov, ki vpliva na količino kmetijskih proizvodov v Sloveniji. Trend je naraščajoč in nihanje količine je skozi leto manjše, če je število naselj večje. Iz tega sem ugotovil, da bo naslednja leta proizvod naraščal, ker število ljudi v Sloveniji narašča, v kolikor bo v Sloveniji kriza bodo Regije, ki imajo več naselj manj prizadete. 
 
 ***
 

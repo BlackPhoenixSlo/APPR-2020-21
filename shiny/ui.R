@@ -8,10 +8,17 @@ shinyUI(fluidPage(
       tabPanel("Velikost proizvodnje",
                DT::dataTableOutput("druzine")),
       
-      tabPanel("Število naselij",
+      tabPanel("Pridelek v regijah skozi leta",
                sidebarPanel(
                   uiOutput("pokrajine")
                 ),
-               mainPanel(plotOutput("naselja")))
+               mainPanel(plotOutput("Regija"))),
+      
+      tabPanel("Pridelek v regijah v vseh letih",
+               sidebarPanel(
+                 uiOutput("pokrajine2")
+               ),
+               mainPanel(plotOutput("Regija2")))
     )
+  
 ))

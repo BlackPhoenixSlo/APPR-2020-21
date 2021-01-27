@@ -30,6 +30,7 @@ library(sp)
 library(httpuv)
 library(munsell)
 library(plotly)
+library(ggplot2)
 
 
 options(gsubfn.engine="R")

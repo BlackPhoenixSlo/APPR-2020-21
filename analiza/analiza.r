@@ -14,6 +14,6 @@ predict(prileganje, data.frame(leto=seq(2010,2022,1)))
 
 
 graf_napoved <- ggplot(Sestevek_po_pridelkih_regijah, aes(x=leto, y=Kolicina)) + geom_point() + 
-  geom_smooth(method='lm', formula=y ~ poly(x,2,raw=TRUE), fullrange=TRUE, color='green') + scale_x_continuous('leto', breaks = seq(2010, 2022, 1), limits = c(2010,2022))
+  geom_smooth(method='lm', formula=y ~ poly(x,2,raw=TRUE), fullrange=TRUE, color='green') + scale_x_continuous('leto', breaks = seq(2010, 2022, 1), limits = c(2010,2022))+ xlab('Leto') + ylab('Količina ton/ha proizvedbe')
 
 
