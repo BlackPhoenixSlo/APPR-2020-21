@@ -115,7 +115,7 @@ graf_SLO_Kolicina_koruze_v_regiji_na_Leto
 ```
 
 
-Na sodnjih dveh grafih so prikazane Slovenske regije ter koliko kmetijskih proizvodov v tonah se proizvede med letoma 2010 in 2019. 
+Na spodnjih dveh grafih so prikazane Slovenske regije ter koliko kmetijskih proizvodov v tonah se proizvede med letoma 2010 in 2019. 
 
 
 
