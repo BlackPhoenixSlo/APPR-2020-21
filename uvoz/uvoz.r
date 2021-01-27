@@ -29,12 +29,12 @@ uvozi.regije <- function() {
   }
   return(tabela)
 }
-
+obcine <- uvozi.regije()
 Slovenski_podatki <- uvozi.regije()
 Slovenske_regije <- Slovenski_podatki %>% group_by(Regija) %>% summarise(Regija,povrsina=sum(povrsina)) %>% unique()
 
-Slovenski_podatki_urejeni <- uvozi.regije() %>% group_by(Regija) %>% summarise(Povrsina = sum(povrsina), Prebivalci = sum(prebivalci), Naselja=sum(naselja), Gostota = Prebivalci/Povrsina)
-Slovenski_podatki_urejeni$Regija <- gsub('Notranjsko-kraška', 'Primorsko-notranjska', Sloveski_podatki_urejeni$Regija)
+Sloveski_podatki_urejeni <- Slovenski_podatki %>% group_by(Regija) %>% summarise(Površina = sum(povrsina), Prebivalci = sum(prebivalci), Naselja=sum(naselja), Gostota = Prebivalci/Površina)
+Sloveski_podatki_urejeni$Regija <- gsub('Notranjsko-kraška', 'Primorsko-notranjska', Sloveski_podatki_urejeni$Regija)
 
 
 #Preberem povprecni pridelek Slovenije

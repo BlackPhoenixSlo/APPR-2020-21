@@ -141,7 +141,7 @@ graf_indeks
 # Napredna analiza podatkov
 
 ```{r analiza}
-#source("analiza/analiza.r", encoding="UTF-8")
+source("analiza/analiza.r", encoding="UTF-8")
 ```
 
 Seštel sem v tonah količino kmetiske proizvodnje v vsakem letu in uporabil drugo polinomsko analino na njem. Vidimo lahko, da je predvideno, da bo količina kmetiskih proizvodov narasla, hkrati pa je prva divijacija zelo visoka, tako, da nemoremo natančno predvitedeti prihodnjosti.
